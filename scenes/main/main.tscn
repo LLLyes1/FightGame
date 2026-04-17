@@ -1,0 +1,76 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/main/main.gd" id="1"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1")
+
+[node name="GameRoot" type="Node" parent="."]
+
+[node name="MenuLayer" type="CanvasLayer" parent="."]
+
+[node name="Backdrop" type="ColorRect" parent="MenuLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0705882, 0.0901961, 0.113725, 1)
+
+[node name="Menu" type="Control" parent="MenuLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Center" type="CenterContainer" parent="MenuLayer/Menu"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="PanelContainer" parent="MenuLayer/Menu/Center"]
+custom_minimum_size = Vector2(660, 0)
+
+[node name="Margin" type="MarginContainer" parent="MenuLayer/Menu/Center/Panel"]
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 28
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 28
+
+[node name="VBox" type="VBoxContainer" parent="MenuLayer/Menu/Center/Panel/Margin"]
+theme_override_constants/separation = 16
+
+[node name="Title" type="Label" parent="MenuLayer/Menu/Center/Panel/Margin/VBox"]
+theme_override_font_sizes/font_size = 42
+text = "Fight Prototype"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="MenuLayer/Menu/Center/Panel/Margin/VBox"]
+theme_override_font_sizes/font_size = 18
+text = "基于项目策划文档搭建的 Godot 4 原型骨架。\n当前版本优先验证：移动、二段跳、近战/远程攻击、击飞、复活、UI 和训练模式。"
+horizontal_alignment = 1
+
+[node name="Buttons" type="HBoxContainer" parent="MenuLayer/Menu/Center/Panel/Margin/VBox"]
+alignment = 1
+theme_override_constants/separation = 12
+
+[node name="VersusButton" type="Button" parent="MenuLayer/Menu/Center/Panel/Margin/VBox/Buttons"]
+custom_minimum_size = Vector2(240, 56)
+text = "开始本地对战"
+
+[node name="TrainingButton" type="Button" parent="MenuLayer/Menu/Center/Panel/Margin/VBox/Buttons"]
+custom_minimum_size = Vector2(240, 56)
+text = "开始训练模式"
+
+[node name="ResultLabel" type="Label" parent="MenuLayer/Menu/Center/Panel/Margin/VBox"]
+theme_override_font_sizes/font_size = 16
+text = "按上面的按钮启动原型。"
+horizontal_alignment = 1
+
+[node name="ControlsLabel" type="Label" parent="MenuLayer/Menu/Center/Panel/Margin/VBox"]
+theme_override_font_sizes/font_size = 15
+text = "P1: WASD + F/G\nP2: 方向键 + K/L\nEsc 暂停，R 重开，Tab 返回菜单"
+horizontal_alignment = 1
