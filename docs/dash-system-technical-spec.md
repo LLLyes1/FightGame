@@ -199,6 +199,8 @@
 
 建议给每个角色配置一份 `DashConfig`，由角色控制器读取。
 
+更准确地说，`DashConfig` 应该归属于 **人物模块 / CharacterConfig**，因为冲刺本体属于角色移动能力，而不是武器攻击能力。
+
 ```ts
 type DashConfig = {
   enabled: boolean;

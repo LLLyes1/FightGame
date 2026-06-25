@@ -1,120 +1,22 @@
 extends RefCounted
 class_name FighterCatalog
 
-static func sword_fighter() -> Dictionary:
-	return {
-		"id": "sword_fighter",
-		"name": "基础剑士",
-		"primary_color": Color("f95738"),
-		"accent_color": Color("faf0ca"),
-		"move_speed": 460.0,
-		"air_speed": 400.0,
-		"ground_accel": 3100.0,
-		"ground_friction": 3600.0,
-		"air_accel": 2300.0,
-		"gravity": 2550.0,
-		"jump_velocity": -940.0,
-		"double_jump_velocity": -900.0,
-		"max_fall_speed": 1280.0,
-		"fast_fall_speed": 1700.0,
-		"max_air_jumps": 1,
-		"coyote_time": 0.10,
-		"jump_buffer": 0.12,
-		"weight": 1.0,
-		"unique_skill": "短暂格挡后反击的均衡角色",
-		"weakness": "终结爆发一般，需要多次读招建立优势",
-		"attacks": {
-			"light": {
-				"name": "横斩",
-				"type": "melee",
-				"startup": 0.09,
-				"active": 0.08,
-				"recovery": 0.14,
-				"movement_scale": 0.62,
-				"damage": 7.0,
-				"base_knockback": 470.0,
-				"knockback_growth": 5.2,
-				"launch_angle": 30.0,
-				"hitstun": 0.16,
-				"hitbox_offset": Vector2(66.0, -4.0),
-				"hitbox_size": Vector2(86.0, 38.0),
-				"lunge": 42.0,
-			},
-			"heavy": {
-				"name": "上挑重击",
-				"type": "melee",
-				"startup": 0.16,
-				"active": 0.10,
-				"recovery": 0.24,
-				"movement_scale": 0.35,
-				"damage": 12.0,
-				"base_knockback": 610.0,
-				"knockback_growth": 7.6,
-				"launch_angle": 56.0,
-				"hitstun": 0.22,
-				"hitbox_offset": Vector2(72.0, -26.0),
-				"hitbox_size": Vector2(104.0, 56.0),
-				"lunge": 24.0,
-			},
-		},
-	}
+const CharacterDatabase = preload("res://scripts/core/character_database.gd")
+const WeaponDatabase = preload("res://scripts/core/weapon_database.gd")
+const FighterLoadout = preload("res://scripts/core/fighter_loadout.gd")
+const FighterAssembler = preload("res://scripts/core/fighter_assembler.gd")
 
-static func gunner_fighter() -> Dictionary:
-	return {
-		"id": "gunner_fighter",
-		"name": "远程炮手",
-		"primary_color": Color("0ead69"),
-		"accent_color": Color("f4d35e"),
-		"move_speed": 420.0,
-		"air_speed": 390.0,
-		"ground_accel": 2800.0,
-		"ground_friction": 3300.0,
-		"air_accel": 2150.0,
-		"gravity": 2480.0,
-		"jump_velocity": -910.0,
-		"double_jump_velocity": -860.0,
-		"max_fall_speed": 1240.0,
-		"fast_fall_speed": 1660.0,
-		"max_air_jumps": 1,
-		"coyote_time": 0.10,
-		"jump_buffer": 0.12,
-		"weight": 0.92,
-		"unique_skill": "用爆裂射击迫使对手变线",
-		"weakness": "贴身时近战防守较弱",
-		"attacks": {
-			"light": {
-				"name": "枪托挥击",
-				"type": "melee",
-				"startup": 0.10,
-				"active": 0.07,
-				"recovery": 0.16,
-				"movement_scale": 0.55,
-				"damage": 6.0,
-				"base_knockback": 430.0,
-				"knockback_growth": 4.8,
-				"launch_angle": 24.0,
-				"hitstun": 0.14,
-				"hitbox_offset": Vector2(58.0, 0.0),
-				"hitbox_size": Vector2(72.0, 34.0),
-				"lunge": 28.0,
-			},
-			"heavy": {
-				"name": "爆裂射击",
-				"type": "projectile",
-				"startup": 0.18,
-				"active": 0.04,
-				"recovery": 0.28,
-				"movement_scale": 0.20,
-				"damage": 9.0,
-				"base_knockback": 560.0,
-				"knockback_growth": 6.8,
-				"launch_angle": 18.0,
-				"hitstun": 0.18,
-				"hitbox_offset": Vector2(78.0, -8.0),
-				"hitbox_size": Vector2(52.0, 24.0),
-				"projectile_speed": 960.0,
-				"projectile_lifetime": 1.0,
-				"lunge": -34.0,
-			},
-		},
-	}
+static func list_characters() -> Array[Dictionary]:
+	return CharacterDatabase.list_characters()
+
+static func list_weapons() -> Array[Dictionary]:
+	return WeaponDatabase.list_weapons()
+
+static func default_loadouts() -> Array[Dictionary]:
+	return [
+		FighterLoadout.build(1, "vanguard", "saber"),
+		FighterLoadout.build(2, "sky_drifter", "hand_cannon"),
+	]
+
+static func build_runtime_fighter(loadout: Dictionary) -> Dictionary:
+	return FighterAssembler.build_fighter_data(loadout)

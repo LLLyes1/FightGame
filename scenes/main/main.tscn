@@ -15,7 +15,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.0705882, 0.0901961, 0.113725, 1)
+color = Color(0.0509804, 0.0784314, 0.105882, 1)
 
 [node name="Menu" type="Control" parent="MenuLayer"]
 anchors_preset = 15
@@ -32,7 +32,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Panel" type="PanelContainer" parent="MenuLayer/Menu/Center"]
-custom_minimum_size = Vector2(660, 0)
+custom_minimum_size = Vector2(1180, 0)
 
 [node name="Margin" type="MarginContainer" parent="MenuLayer/Menu/Center/Panel"]
 theme_override_constants/margin_left = 32
@@ -41,17 +41,100 @@ theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 28
 
 [node name="VBox" type="VBoxContainer" parent="MenuLayer/Menu/Center/Panel/Margin"]
-theme_override_constants/separation = 16
+theme_override_constants/separation = 18
 
 [node name="Title" type="Label" parent="MenuLayer/Menu/Center/Panel/Margin/VBox"]
 theme_override_font_sizes/font_size = 42
-text = "Fight Prototype"
+text = "格斗原型"
 horizontal_alignment = 1
 
 [node name="Subtitle" type="Label" parent="MenuLayer/Menu/Center/Panel/Margin/VBox"]
 theme_override_font_sizes/font_size = 18
-text = "基于项目策划文档搭建的 Godot 4 原型骨架。\n当前版本优先验证：移动、二段跳、近战/远程攻击、击飞、复活、UI 和训练模式。"
 horizontal_alignment = 1
+
+[node name="EditorRoot" type="HBoxContainer" parent="MenuLayer/Menu/Center/Panel/Margin/VBox"]
+theme_override_constants/separation = 18
+
+[node name="EditorPanel" type="PanelContainer" parent="MenuLayer/Menu/Center/Panel/Margin/VBox/EditorRoot"]
+custom_minimum_size = Vector2(760, 0)
+size_flags_horizontal = 3
+
+[node name="EditorMargin" type="MarginContainer" parent="MenuLayer/Menu/Center/Panel/Margin/VBox/EditorRoot/EditorPanel"]
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="EditorVBox" type="VBoxContainer" parent="MenuLayer/Menu/Center/Panel/Margin/VBox/EditorRoot/EditorPanel/EditorMargin"]
+theme_override_constants/separation = 14
+
+[node name="EditorHeader" type="VBoxContainer" parent="MenuLayer/Menu/Center/Panel/Margin/VBox/EditorRoot/EditorPanel/EditorMargin/EditorVBox"]
+theme_override_constants/separation = 6
+
+[node name="EditorTitle" type="Label" parent="MenuLayer/Menu/Center/Panel/Margin/VBox/EditorRoot/EditorPanel/EditorMargin/EditorVBox/EditorHeader"]
+theme_override_font_sizes/font_size = 26
+text = "角色编辑器"
+
+[node name="EditorHint" type="Label" parent="MenuLayer/Menu/Center/Panel/Margin/VBox/EditorRoot/EditorPanel/EditorMargin/EditorVBox/EditorHeader"]
+theme_override_font_sizes/font_size = 15
+
+[node name="PlayerTabs" type="HBoxContainer" parent="MenuLayer/Menu/Center/Panel/Margin/VBox/EditorRoot/EditorPanel/EditorMargin/EditorVBox"]
+theme_override_constants/separation = 10
+
+[node name="CharacterSection" type="Label" parent="MenuLayer/Menu/Center/Panel/Margin/VBox/EditorRoot/EditorPanel/EditorMargin/EditorVBox"]
+theme_override_font_sizes/font_size = 18
+text = "选择角色"
+
+[node name="CharacterCards" type="GridContainer" parent="MenuLayer/Menu/Center/Panel/Margin/VBox/EditorRoot/EditorPanel/EditorMargin/EditorVBox"]
+columns = 3
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+
+[node name="WeaponSection" type="Label" parent="MenuLayer/Menu/Center/Panel/Margin/VBox/EditorRoot/EditorPanel/EditorMargin/EditorVBox"]
+theme_override_font_sizes/font_size = 18
+text = "选择武器"
+
+[node name="WeaponCards" type="GridContainer" parent="MenuLayer/Menu/Center/Panel/Margin/VBox/EditorRoot/EditorPanel/EditorMargin/EditorVBox"]
+columns = 3
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+
+[node name="SummaryPanel" type="PanelContainer" parent="MenuLayer/Menu/Center/Panel/Margin/VBox/EditorRoot"]
+custom_minimum_size = Vector2(330, 0)
+
+[node name="SummaryMargin" type="MarginContainer" parent="MenuLayer/Menu/Center/Panel/Margin/VBox/EditorRoot/SummaryPanel"]
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="SummaryVBox" type="VBoxContainer" parent="MenuLayer/Menu/Center/Panel/Margin/VBox/EditorRoot/SummaryPanel/SummaryMargin"]
+theme_override_constants/separation = 12
+
+[node name="SummaryTitle" type="Label" parent="MenuLayer/Menu/Center/Panel/Margin/VBox/EditorRoot/SummaryPanel/SummaryMargin/SummaryVBox"]
+theme_override_font_sizes/font_size = 26
+text = "当前配置"
+
+[node name="ActivePlayerLabel" type="Label" parent="MenuLayer/Menu/Center/Panel/Margin/VBox/EditorRoot/SummaryPanel/SummaryMargin/SummaryVBox"]
+theme_override_font_sizes/font_size = 18
+text = "正在编辑：玩家 1"
+
+[node name="SummaryBody" type="Label" parent="MenuLayer/Menu/Center/Panel/Margin/VBox/EditorRoot/SummaryPanel/SummaryMargin/SummaryVBox"]
+theme_override_font_sizes/font_size = 15
+
+[node name="LoadoutMatrixTitle" type="Label" parent="MenuLayer/Menu/Center/Panel/Margin/VBox/EditorRoot/SummaryPanel/SummaryMargin/SummaryVBox"]
+theme_override_font_sizes/font_size = 18
+text = "双方配置"
+
+[node name="LoadoutMatrixLabel" type="Label" parent="MenuLayer/Menu/Center/Panel/Margin/VBox/EditorRoot/SummaryPanel/SummaryMargin/SummaryVBox"]
+theme_override_font_sizes/font_size = 15
+
+[node name="RosterInfoTitle" type="Label" parent="MenuLayer/Menu/Center/Panel/Margin/VBox/EditorRoot/SummaryPanel/SummaryMargin/SummaryVBox"]
+theme_override_font_sizes/font_size = 18
+text = "阵容信息"
+
+[node name="RosterInfoLabel" type="Label" parent="MenuLayer/Menu/Center/Panel/Margin/VBox/EditorRoot/SummaryPanel/SummaryMargin/SummaryVBox"]
+theme_override_font_sizes/font_size = 15
 
 [node name="Buttons" type="HBoxContainer" parent="MenuLayer/Menu/Center/Panel/Margin/VBox"]
 alignment = 1
@@ -67,10 +150,8 @@ text = "开始训练模式"
 
 [node name="ResultLabel" type="Label" parent="MenuLayer/Menu/Center/Panel/Margin/VBox"]
 theme_override_font_sizes/font_size = 16
-text = "按上面的按钮启动原型。"
 horizontal_alignment = 1
 
 [node name="ControlsLabel" type="Label" parent="MenuLayer/Menu/Center/Panel/Margin/VBox"]
 theme_override_font_sizes/font_size = 15
-text = "P1: WASD + F/G\nP2: 方向键 + K/L\nEsc 暂停，R 重开，Tab 返回菜单"
 horizontal_alignment = 1
